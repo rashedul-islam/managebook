@@ -1,0 +1,37 @@
+{% if user.is_authenticated %}
+      Hello {{ user.username }}
+      <a href="{% url 'logout' %}">logout</a>
+{% endif %}
+
+<div>
+    <h1>Book Management System</h1>
+</div>
+
+<a href="{%url 'new_book'%}">Creae a new book</a>
+<br />
+<a href="{%url 'add_genre'%}">Add Genres</a>
+<br />
+
+Available Books:
+<br />
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == "info" %}
+      <h3>{{message}}</h3>
+    {% endif%}
+  {% endfor %}
+{% endif %}
+
+{% for book in books %}
+    <div>
+    	<ul>
+	    	<p>Book name : {{ book.book_name }}</p>
+	    	<p>Author : {{ book.author}}</p>
+	    	<p>Genres : {{ book.genres}}</p>
+	    	<a href="{% url 'edit_book' pk=book.pk %}">Edit</a>
+	    	<br />
+	    	--------------------
+    	</ul>
+        
+    </div>
+{% endfor %}

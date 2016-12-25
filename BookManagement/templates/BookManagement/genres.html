@@ -1,0 +1,15 @@
+Available Genres :
+{% if messages %}
+	{% for message in messages %}
+		{% if message.tags == "info" %}
+			<ul>{{ message }}</ul>
+		{% endif%}
+	{% endfor %}
+{% endif %}
+<br />
+Add a new Genre in the System
+
+<form method="POST">{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Save</button>
+</form>

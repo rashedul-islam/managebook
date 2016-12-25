@@ -1,0 +1,16 @@
+{% if messages %}
+	{% for message in messages %}
+		{% if message.tags == "error" %}
+			<h3 style="color: red">{{ message }}</h3>
+
+		{% elif message.tags == "info" %}
+			<h2>{{ message }}</h2>
+
+		{% endif%}
+	{% endfor %}
+{% endif %}
+
+<form method="POST">{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Save</button>
+</form>
