@@ -13,6 +13,11 @@ class Genre(models.Model):
 		return self.name
 
 def construct_genre_choices(available_genres):
+	"""
+	retriving all the genres from Genre table to pass the values as choices
+	in the MultiSelectField field. THIS METHOD SHOULD NOT BE CALLED WHILE DATABASE MIGRATION
+
+	"""
 	genre_list = []
 	if available_genres:
 		for genre in available_genres:
@@ -24,6 +29,7 @@ def construct_genre_choices(available_genres):
 	result = tuple(choices)
 	return result
 
+#Please comment this line during database migration
 CHOICES = construct_genre_choices(Genre.objects.all())
 
 class Book(models.Model):
